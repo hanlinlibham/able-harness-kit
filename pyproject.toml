@@ -1,0 +1,32 @@
+[project]
+name = "able-harness-kit"
+version = "0.1.0"
+description = "Thin, backend-neutral agent-harness middlewares for LangChain / deepagents: loop guard, binary-read guard, tool-result budget."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Hanlin Li", email = "itseek@qq.com" }]
+keywords = ["agents", "llm", "langchain", "deepagents", "agent-harness", "middleware", "loop-detection"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "langchain>=1.3,<2.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[project.urls]
+Homepage = "https://github.com/hanlinlibham/able-harness-kit"
+Issues = "https://github.com/hanlinlibham/able-harness-kit/issues"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["able_harness_kit*"]
