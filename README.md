@@ -7,7 +7,9 @@ Three production-distilled patterns that compose on top of any LangChain
 They don't replace your agent — they harden the loop around it.
 
 ```bash
-pip install able-harness-kit      # or, from a clone:  pip install -e .
+pip install able-harness-kit          # after the first PyPI release
+# or, from a clone:
+pip install -e .
 ```
 
 ## Why
@@ -21,7 +23,7 @@ Most agent failures aren't "the model isn't smart enough" — they're the loop
 | `BinaryReadGuardMiddleware` | `read_file` hands the model a base64 block for a binary file; a lossy gateway drops it; the model *claims it read the file* and hallucinates. |
 | `ToolResultBudgetMiddleware` | A 200 KB tool dump blows the context window and forces premature summarization. |
 
-Each is **backend-neutral** (depends only on `langchain` message/middleware
+Each is **backend-neutral** (depends only on LangChain / LangGraph public
 types), small enough to read in one sitting, and composes *with* — rather than
 replaces — your existing harness.
 
@@ -47,11 +49,11 @@ agent = create_agent(
 ```
 
 ### `LoopGuardMiddleware`
-`observe(tool_call) -> LoopSignal -> Action(WARN | STOP)`. Fingerprints each
-tool call (name + normalized args), counts consecutive repeats, and
-short-circuits with a directive once `stop_at` is hit. The counter resets the
-moment a different call is seen — interventions are minimal and reversible.
-Pass `on_signal=` to observe loop signals without changing control flow.
+Internally fingerprints each tool call (name + normalized args), counts
+consecutive repeats, and short-circuits with a directive once `stop_at` is hit.
+The counter resets the moment a different call is seen — interventions are
+minimal and reversible. Pass `on_signal=` to observe loop signals without
+changing control flow.
 
 ### `BinaryReadGuardMiddleware`
 Intercepts `read_file` results whose declared media type isn't text-like and

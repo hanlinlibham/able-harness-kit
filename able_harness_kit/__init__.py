@@ -10,7 +10,7 @@ that compose on top of LangChain / deepagents agents:
 
 See the README for rationale and the experiment behind them.
 """
-from .binary_read_guard import BinaryReadGuardMiddleware, is_text_like
+from .binary_read_guard import BinaryReadGuardMiddleware, DEFAULT_DIRECTIVE, is_text_like
 from .loop_guard import (
     LoopAction,
     LoopGuardMiddleware,
@@ -18,7 +18,12 @@ from .loop_guard import (
     LoopTracker,
     fingerprint_tool_call,
 )
-from .tool_result_budget import OffloadRef, ToolResultBudgetMiddleware, apply_budget
+from .tool_result_budget import (
+    OffloadFn,
+    OffloadRef,
+    ToolResultBudgetMiddleware,
+    apply_budget,
+)
 
 __all__ = [
     "LoopGuardMiddleware",
@@ -28,8 +33,10 @@ __all__ = [
     "fingerprint_tool_call",
     "BinaryReadGuardMiddleware",
     "is_text_like",
+    "DEFAULT_DIRECTIVE",
     "ToolResultBudgetMiddleware",
     "OffloadRef",
+    "OffloadFn",
     "apply_budget",
 ]
 
