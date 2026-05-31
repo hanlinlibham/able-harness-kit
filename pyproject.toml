@@ -1,6 +1,6 @@
 [project]
 name = "able-harness-kit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Thin, backend-neutral agent-harness middlewares for LangChain / deepagents: loop guard, binary-read guard, tool-result budget."
 readme = "README.md"
 requires-python = ">=3.10"
